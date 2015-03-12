@@ -14,4 +14,8 @@ public class User {
     private float pointsEarned;
     private String description;
 
+    public User() {
+
+    }
+
 }
