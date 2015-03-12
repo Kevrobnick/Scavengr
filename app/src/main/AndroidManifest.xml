@@ -20,6 +20,14 @@
             android:name=".createGameActivity"
             android:label="@string/title_activity_create_game" >
         </activity>
+        <activity
+            android:name=".playGame"
+            android:label="@string/title_activity_play_game"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="kevrobnick.com.scavengr.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
