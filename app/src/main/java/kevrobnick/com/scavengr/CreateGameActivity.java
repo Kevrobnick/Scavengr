@@ -1,6 +1,9 @@
 package kevrobnick.com.scavengr;
 
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,12 +19,14 @@ public class CreateGameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_game);
 
-        // attempting to add function to cameraButton
+        // TODO: Picture taken from camera to database
         ImageButton createGameButton = (ImageButton)findViewById(R.id.cameraButton);
         createGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent openCamera = new Intent("android.media.action.IMAGE_CAPTURE");
+                //new
+                //new
                 startActivityForResult(openCamera, 0);
             }
         });
