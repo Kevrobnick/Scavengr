@@ -1,9 +1,12 @@
 package kevrobnick.com.scavengr;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 
 public class CreateGameActivity extends ActionBarActivity {
@@ -12,6 +15,17 @@ public class CreateGameActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_game);
+
+        // attempting to add function to cameraButton
+        ImageButton createGameButton = (ImageButton)findViewById(R.id.cameraButton);
+        createGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openCamera = new Intent("android.media.action.IMAGE_CAPTURE");
+                startActivityForResult(openCamera, 0);
+            }
+        });
+        //
     }
 
 
