@@ -23,20 +23,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.media.Image;
 import android.widget.Toast;
-import android.media.*;
-import android.database.*;
-
+import android.widget.Button;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import java.io.IOException;
+
+import kevrobnick.com.database.Game;
 
 
 public class CreateGameActivity extends ActionBarActivity {
   //Some additional items needed for the massive DB store when taking a photo
 
-    final static int CREATE_GAME_ACTIVITY_REQUEST_CODE =1;
-    Uri imageUri = null;
-    static TextView imageDetails = null;
-    public static ImageView showImg = null;
-    CreateGameActivity CameraActivity = null;
+    Button addImage;
+    //ArrayList<Game> imageArry = new ArrayList<Game>();
+    ImageAdapter imageAdapter;
+    private static final int CAMERA_REQUEST = 1;
+    private static final int PICK_FROM_GALLERY = 2;
+    ListView dataList;
+    byte[] imageName;
+    int imageId;
+    Bitmap theImage;
+   // DataBaseHandler db;
 
 
     @Override
@@ -44,36 +51,22 @@ public class CreateGameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_game);
 
-        //imageDetails = (TextView) findViewById(R.id.imageDetails);
-        //showImg = (ImageView) findViewById(R.id.showImg);
-        CameraActivity =this;
+
 
         // TODO: Picture taken from camera to database
         ImageButton createGameButton = (ImageButton)findViewById(R.id.cameraButton);
         createGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent openCamera = new Intent("android.media.action.IMAGE_CAPTURE");
+                Intent openCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-               // Some additional intent attributes
 
-                openCamera.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-                openCamera.putExtra(MediaStore.EXTRA_VIDEO_QUALITY,1);
-                startActivityForResult(openCamera, CREATE_GAME_ACTIVITY_REQUEST_CODE);
-                // define file name to save the photo taken
-                String fileName = "Camera_Example.jpg";
-                //Making peramiters
-                ContentValues values = new ContentValues();
-                values.put(MediaStore.Images.Media.TITLE, fileName);
-                values.put(MediaStore.Images.Media.DESCRIPTION,"Image capture by camera");
-                // this is the current activity attribute, define and save for later here
-                imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
             }
         });
         //
     }
-    protected void onActivityResult( int requestCode, int resultCode, Intent data)
+   /* protected void onActivityResult( int requestCode, int resultCode, Intent data)
     {
         if( requestCode == CREATE_GAME_ACTIVITY_REQUEST_CODE)
         {
@@ -91,7 +84,7 @@ public class CreateGameActivity extends ActionBarActivity {
                 Toast.makeText(this, "Picture not taken", Toast.LENGTH_SHORT).show();
             }
         }
-    }
+    }*/
     public static String convertImageUriToFile (Uri imageUri, Activity activity)
     {
         Cursor cursor = null;
@@ -113,7 +106,7 @@ public class CreateGameActivity extends ActionBarActivity {
 
             int size = cursor.getCount();
             if (size == 0){
-                imageDetails.setText("No Image");
+                //imageDetails.setText("No Image");
             } else{
                 int thumbID = 0;
                 if (cursor.moveToFirst()){
@@ -126,7 +119,7 @@ public class CreateGameActivity extends ActionBarActivity {
                             +" ThumbID :"+thumbID+"\n"
                             +" Path :"+Path+"\n";
                     // display captured image details on the activity
-                    imageDetails.setText(CapturedImageDetails);
+                  //  imageDetails.setText(CapturedImageDetails);
                 }
             }
 
@@ -170,7 +163,7 @@ public class CreateGameActivity extends ActionBarActivity {
         protected void onPostCreate(Void unused){
             Dialog.dismiss();
             if (mBitmap != null){
-                showImg.setImageBitmap(mBitmap);
+             //   showImg.setImageBitmap(mBitmap);
             }
         }
     }
