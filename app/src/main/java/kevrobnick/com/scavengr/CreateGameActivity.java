@@ -44,8 +44,8 @@ public class CreateGameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_game);
 
-        imageDetails = (TextView) findViewById(R.id.imageDetails);
-        showImg = (ImageView) findViewById(R.id.showImg);
+        //imageDetails = (TextView) findViewById(R.id.imageDetails);
+        //showImg = (ImageView) findViewById(R.id.showImg);
         CameraActivity =this;
 
         // TODO: Picture taken from camera to database

@@ -8,25 +8,10 @@
     android:background="#2c73ff">
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:id="@+id/cameraButton"
-        android:background="@mipmap/camerabutton"
+        android:background="@drawable/camerabutton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageDetails"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="20dp"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/showImg"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/imageDetails"
-        />
 </RelativeLayout>

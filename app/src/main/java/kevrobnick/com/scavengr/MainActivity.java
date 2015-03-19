@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -34,6 +35,8 @@ public class MainActivity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
+    private ListView listView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,27 @@ public class MainActivity extends ActionBarActivity
                 startActivity(openCreateGameActivity);
             }
         });
+
+        // This section is for photostream stuff by Kevin
+        // TODO: Stream from DB
+        StreamGame photostream_data[] = new StreamGame[]
+                {
+                        new StreamGame(R.mipmap.testphoto, "Test Photo 1"),
+                        new StreamGame(R.mipmap.testphoto2, "Test Photo 2"),
+                        new StreamGame(R.mipmap.testphoto3, "Test Photo 3"),
+                        new StreamGame(R.mipmap.testphoto4, "Test Photo 4"),
+                        new StreamGame(R.mipmap.testphoto, "Test Photo 1 Again"),
+                        new StreamGame(R.mipmap.testphoto2, "Test Photo 2 Again"),
+                        new StreamGame(R.mipmap.testphoto3, "Test Photo 3 Again"),
+                        new StreamGame(R.mipmap.testphoto4, "Test Photo 4 Again")
+                };
+        StreamGameAdapter adapter = new StreamGameAdapter(this,
+                R.layout.listview_item_row, photostream_data);
+
+        listView1 = (ListView)findViewById(R.id.photoStream);
+
+        listView1.setAdapter(adapter);
+        // end photostream stuff
     }
 
     @Override
